@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eCamera</name>
+    <events>
+        <event-block sid="805837744700482">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="548900655437043" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="168339213791008" type="Camera">
+                    <param id="0" name="X">lerp(Self.X,Mario.X,0.03)</param>
+                    <param id="1" name="Y">lerp(Self.Y,Mario.Y,0.03)</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

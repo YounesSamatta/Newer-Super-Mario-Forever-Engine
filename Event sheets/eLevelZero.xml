@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eLevelZero</name>
+    <events>
+        <include>eEnemies</include>
+        <include>eEffects</include>
+        <include>eCamera</include>
+        <include>eMario</include>
+        <event-block sid="483665032069811">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="547793248668912" type="Keyboard">
+                    <param id="0" name="Key">82</param>
+                </condition>
+                <condition id="-18" name="Is in preview" sid="703846295026329" type="System" />
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="473469282132569" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eEnemies</name>
+    <events>
+        <comment>Prevent Enemies from moving until they&apos;re on-screen</comment>
+        <event-block sid="202480913778856">
+            <conditions>
+                <condition id="-3" name="Is on-screen" sid="934130162481285" type="Enemies_Fam" />
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="675193484638918" type="Enemies_Fam">
+                    <param id="0" name="Instance variable">Seen</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="814717430075365" type="Enemies_Fam">
+                    <param id="0" name="Instance variable">Seen</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="210004973357514" title="Goomba">
+            <sub-events>
+                <event-group description="" sid="618612343683915" title="Goomba Animations">
+                    <sub-events>
+                        <event-block sid="749475658887685">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="432860993764664" type="Goomba">
+                                    <param id="0" name="Instance variable">Phase</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="415262178503145" type="Goomba">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="269285982442456" type="Goomba">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="926078011829026">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="678457470138919" type="Goomba">
+                                    <param id="0" name="Instance variable">Phase</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="502421351149609" type="Goomba">
+                                    <param id="0" name="Animation">&quot;Flipped&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="166687558039942" type="Goomba">
+                                    <param id="0" name="Animation">&quot;Flipped&quot;</param>
+                                    <param id="1" name="From">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="560697382264537">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="851135484569774" type="Goomba">
+                                    <param id="0" name="Instance variable">Phase</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="571740658637608" type="Goomba">
+                                    <param id="0" name="Animation">&quot;Spinning&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="802231268508363" type="Goomba">
+                                    <param id="0" name="Animation">&quot;Spinning&quot;</param>
+                                    <param id="1" name="From">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="959334711220317" title="Goomba AI">
+                    <sub-events>
+                        <event-group description="" sid="557433880888774" title="Goomba Basic Movement">
+                            <sub-events>
+                                <event-block sid="156340165567796">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="483196952880326" type="Goomba">
+                                            <param id="0" name="Instance variable">IsActive</param>
+                                        </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="970893684633744" type="Goomba">
+                                            <param id="0" name="Instance variable">Seen</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="977195982724186">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="658180901458460" type="Goomba">
+                                                    <param id="0" name="Instance variable">Direction</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">&quot;left&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Platform" id="7" name="Simulate control" sid="280708483513016" type="Goomba">
+                                                    <param id="0" name="Control">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="752655255978736">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="890474095181240" type="Goomba">
+                                                    <param id="0" name="Instance variable">Direction</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">&quot;right&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Platform" id="7" name="Simulate control" sid="342110227626368" type="Goomba">
+                                                    <param id="0" name="Control">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Changes goomba direction after colliding with a wall</comment>
+                                        <event-block sid="206026017050787">
+                                            <conditions>
+                                                <condition behavior="Platform" id="10" name="Is by wall" sid="273361580462202" type="Goomba">
+                                                    <param id="0" name="Side">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="302805514616428" type="Goomba">
+                                                    <param id="0" name="Instance variable">Direction</param>
+                                                    <param id="1" name="Value">&quot;right&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="824353343498761">
+                                            <conditions>
+                                                <condition behavior="Platform" id="10" name="Is by wall" sid="972027995619068" type="Goomba">
+                                                    <param id="0" name="Side">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="309308397725489" type="Goomba">
+                                                    <param id="0" name="Instance variable">Direction</param>
+                                                    <param id="1" name="Value">&quot;left&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Changes the goomba facing direction</comment>
+                                        <event-block sid="689154778186176">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="167973779801062" type="Goomba">
+                                                    <param id="0" name="Instance variable">Direction</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">&quot;left&quot;</param>
+                                                </condition>
+                                                <condition id="7" name="Is mirrored" sid="570858113523694" type="Goomba" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="7" name="Set mirrored" sid="662697789229152" type="Goomba">
+                                                    <param id="0" name="State">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="563654923633350">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="534148409845293" type="Goomba">
+                                                    <param id="0" name="Instance variable">Direction</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">&quot;right&quot;</param>
+                                                </condition>
+                                                <condition id="7" inverted="1" name="Is mirrored" sid="824983907486995" type="Goomba" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="7" name="Set mirrored" sid="816394284314120" type="Goomba">
+                                                    <param id="0" name="State">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-group description="" sid="857018398821571" title="Goomba Vs. Mario">
+                            <sub-events>
+                                <event-block sid="884012208696610">
+                                    <conditions>
+                                        <condition id="0" name="On collision with another object" sid="277346873586427" type="Mario">
+                                            <param id="0" name="Object">Goomba</param>
+                                        </condition>
+                                        <condition id="-2" name="Compare Y" sid="117474896969191" type="Mario">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Y co-ordinate">Goomba.ImagePointY(&quot;Center&quot;)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="354970163720041">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="412117047525416" type="Goomba">
+                                                    <param id="0" name="Instance variable">Phase</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Platform" id="9" name="Set vector Y" sid="126741812710064" type="Mario">
+                                                    <param id="0" name="Vector Y">-350</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="619314607330556" type="Goomba">
+                                                    <param id="0" name="Instance variable">Phase</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <comment>Makes The goomba fall on its back</comment>
+                                                <event-block sid="855087064545537">
+                                                    <conditions>
+                                                        <condition id="7" inverted="1" name="Is mirrored" sid="455464885876453" type="Mario" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action behavior="Platform" id="8" name="Set vector X" sid="878484404727961" type="Goomba">
+                                                            <param id="0" name="Vector X">650</param>
+                                                        </action>
+                                                        <action behavior="Platform" id="9" name="Set vector Y" sid="406153116294962" type="Goomba">
+                                                            <param id="0" name="Vector Y">-350</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="651498249411673">
+                                                    <conditions>
+                                                        <condition id="7" name="Is mirrored" sid="447133927322688" type="Mario" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action behavior="Platform" id="8" name="Set vector X" sid="699983243756105" type="Goomba">
+                                                            <param id="0" name="Vector X">-650</param>
+                                                        </action>
+                                                        <action behavior="Platform" id="9" name="Set vector Y" sid="540411977994425" type="Goomba">
+                                                            <param id="0" name="Vector Y">-350</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Flips the goomba upside down</comment>
+                                <event-block sid="822489235446080">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="369891192557277" type="Goomba">
+                                            <param id="0" name="Instance variable">Phase</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="1" name="Set max speed" sid="928190519783781" type="Goomba">
+                                            <param id="0" name="Max Speed">650</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="861516514748200" type="Goomba">
+                                            <param id="0" name="Instance variable">IsActive</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="633849771037014">
+                                            <conditions>
+                                                <condition id="0" name="On collision with another object" sid="443181345226633" type="Goomba">
+                                                    <param id="0" name="Object">Collision</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Spawn another object" sid="437594222909491" type="Goomba">
+                                                    <param id="0" name="Object">Effect_Pow</param>
+                                                    <param id="1" name="Layer">&quot;Blocks&quot;</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                                <action id="-9" name="Destroy" sid="594289620481817" type="Goomba" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="389419524371599">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="274438838068103" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="848462217464020" type="Goomba">
+                                            <param id="0" name="Instance variable">IsActive</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

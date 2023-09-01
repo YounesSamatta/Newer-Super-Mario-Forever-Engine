@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eMario</name>
+    <events>
+        <comment>If the player goes outside the layout, bring them back in.</comment>
+        <event-block sid="662308234833097">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="937267579322028" type="Mario" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="354826517528437" type="Mario">
+                    <param id="0" name="X">64</param>
+                    <param id="1" name="Y">584</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="351544971193559" title="Animations">
+            <sub-events>
+                <event-group description="" sid="865831400055183" title="Walljump Animation">
+                    <sub-events>
+                        <comment>Makes mario slide on walls</comment>
+                        <event-block sid="819428074863364">
+                            <conditions>
+                                <condition behavior="Platform" id="2" inverted="1" name="Is on floor" sid="357560968656555" type="Mario" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block any="1" sid="162259623374324">
+                                    <conditions>
+                                        <condition behavior="Platform" id="10" name="Is by wall" sid="116636089163765" type="Mario">
+                                            <param id="0" name="Side">1</param>
+                                        </condition>
+                                        <condition behavior="Platform" id="10" name="Is by wall" sid="771225969225076" type="Mario">
+                                            <param id="0" name="Side">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="6" name="Set max fall speed" sid="480668523753502" type="Mario">
+                                            <param id="0" name="Max fall speed">220</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="637511279231865">
+                                            <conditions>
+                                                <condition id="2" inverted="1" name="Is playing" sid="724653339225359" type="Mario">
+                                                    <param id="0" name="Animation">&quot;Walljump&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="835079261994005" type="Mario">
+                                                    <param id="0" name="Animation">&quot;Walljump&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="949734648843226">
+                                            <conditions>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="836279499454405" type="Mario">
+                                                    <param id="0" name="Instance variable">IsSkidding</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="222810207446635" type="Mario">
+                                                    <param id="0" name="Instance variable">IsSkidding</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="357398298360223">
+                                            <conditions>
+                                                <condition behavior="Platform" id="10" name="Is by wall" sid="901624761869905" type="Mario">
+                                                    <param id="0" name="Side">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="7" name="Set mirrored" sid="620415720348409" type="Mario">
+                                                    <param id="0" name="State">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="604892805328613">
+                                            <conditions>
+                                                <condition behavior="Platform" id="10" name="Is by wall" sid="819744542113800" type="Mario">
+                                                    <param id="0" name="Side">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="7" name="Set mirrored" sid="490092120225171" type="Mario">
+                                                    <param id="0" name="State">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Revert mario falling speed after jumping off a wall</comment>
+                                <event-block sid="804345284156083">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="820148468495631" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="6" name="Set max fall speed" sid="303483565165693" type="Mario">
+                                            <param id="0" name="Max fall speed">1000</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="509590556089361" title="Facing Direction">
+                    <sub-events>
+                        <comment>Prevent mario from facing another direction while skidding,walljumping</comment>
+                        <event-block sid="169764909285692">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="263277707185170" type="Mario">
+                                    <param id="0" name="Instance variable">IsSkidding</param>
+                                </condition>
+                                <condition behavior="Platform" id="10" inverted="1" name="Is by wall" sid="529986957514386" type="Mario">
+                                    <param id="0" name="Side">0</param>
+                                </condition>
+                                <condition behavior="Platform" id="10" inverted="1" name="Is by wall" sid="215294571963107" type="Mario">
+                                    <param id="0" name="Side">1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="289440106904192">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="152061318866385" type="Keyboard">
+                                            <param id="0" name="Key">39</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Set mirrored" sid="501818454033441" type="Mario">
+                                            <param id="0" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="996569829405621">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="871091394885188" type="Keyboard">
+                                            <param id="0" name="Key">37</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Set mirrored" sid="440595844468176" type="Mario">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="611688787263862" title="Basic Animations">
+                    <sub-events>
+                        <event-block sid="901012402810623">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="967256300959029" type="Mario">
+                                    <param id="0" name="Instance variable">IsSkidding</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="634492714559352">
+                                    <conditions>
+                                        <condition behavior="Platform" id="3" name="Is jumping" sid="207270199741968" type="Mario" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="643164641576247" type="Mario">
+                                            <param id="0" name="Animation">&quot;Jump&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="397631221730385">
+                                    <conditions>
+                                        <condition behavior="Platform" id="6" name="On fall" sid="714310953631081" type="Mario" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="946747380885808" type="Mario">
+                                            <param id="0" name="Animation">&quot;Fall&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="853477554481023">
+                                    <conditions>
+                                        <condition behavior="Platform" id="2" name="Is on floor" sid="304801092399895" type="Mario" />
+                                        <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="137096474891371" type="Mario" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="818452555691769" type="Mario">
+                                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="725146021545484">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" name="Is moving" sid="679000934582897" type="Mario" />
+                                        <condition behavior="Platform" id="2" name="Is on floor" sid="324564216791152" type="Mario" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="534975385375247" type="Mario">
+                                            <param id="0" name="Animation">&quot;Run&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Activate the falling animation after jumping off a wall</comment>
+                                <event-block sid="890156057998960">
+                                    <conditions>
+                                        <condition behavior="Platform" id="4" name="Is falling" sid="505370568406658" type="Mario" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="905302207347616">
+                                            <conditions>
+                                                <condition behavior="Platform" id="10" inverted="1" name="Is by wall" sid="632411840174633" type="Mario">
+                                                    <param id="0" name="Side">1</param>
+                                                </condition>
+                                                <condition behavior="Platform" id="10" inverted="1" name="Is by wall" sid="659270889053358" type="Mario">
+                                                    <param id="0" name="Side">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="367048348098502">
+                                                    <conditions>
+                                                        <condition id="2" inverted="1" name="Is playing" sid="357607336499959" type="Mario">
+                                                            <param id="0" name="Animation">&quot;Fall&quot;</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="462146305436394" type="Mario">
+                                                            <param id="0" name="Animation">&quot;Fall&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="158728979370036" title="Skidding">
+                    <sub-events>
+                        <event-block any="1" sid="625414203805453">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="721905293525830" type="Keyboard">
+                                    <param id="0" name="Key">39</param>
+                                </condition>
+                                <condition id="0" name="On key pressed" sid="351814091054779" type="Keyboard">
+                                    <param id="0" name="Key">37</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="789666089369206">
+                                    <conditions>
+                                        <condition behavior="Platform" id="1" name="Compare speed" sid="931029655707134" type="Mario">
+                                            <param id="0" name="Comparison">0</param>
+                                            <param id="1" name="Speed">Mario.Platform.MaxSpeed</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="278729128978332" type="Mario">
+                                            <param id="0" name="Instance variable">IsSkidding</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="931788119993989" type="Mario">
+                                            <param id="0" name="Animation">&quot;Skidding&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="828611327399352">
+                            <conditions>
+                                <condition id="4" name="On finished" sid="445342508395708" type="Mario">
+                                    <param id="0" name="Animation">&quot;Skidding&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="453894074389236" type="Mario">
+                                    <param id="0" name="Instance variable">IsSkidding</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="589709309754996" title="Controls">
+            <sub-events>
+                <event-group description="" sid="901240229740335" title="Wall Jump">
+                    <sub-events>
+                        <event-block sid="780952498025736">
+                            <conditions>
+                                <condition behavior="Platform" id="2" inverted="1" name="Is on floor" sid="654794676091739" type="Mario" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="520437488015588">
+                                    <conditions>
+                                        <condition id="0" name="On key pressed" sid="481525579720105" type="Keyboard">
+                                            <param id="0" name="Key">90</param>
+                                        </condition>
+                                        <condition behavior="Platform" id="10" name="Is by wall" sid="947866268144019" type="Mario">
+                                            <param id="0" name="Side">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="9" name="Set vector Y" sid="864851258733897" type="Mario">
+                                            <param id="0" name="Vector Y">-550</param>
+                                        </action>
+                                        <action behavior="8Direction" id="9" name="Set vector X" sid="273370859836280" type="Mario">
+                                            <param id="0" name="Vector X">-600</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="835134566104461">
+                                    <conditions>
+                                        <condition id="0" name="On key pressed" sid="750620739512477" type="Keyboard">
+                                            <param id="0" name="Key">90</param>
+                                        </condition>
+                                        <condition behavior="Platform" id="10" name="Is by wall" sid="809800512978029" type="Mario">
+                                            <param id="0" name="Side">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="9" name="Set vector Y" sid="841077482661960" type="Mario">
+                                            <param id="0" name="Vector Y">-550</param>
+                                        </action>
+                                        <action behavior="8Direction" id="9" name="Set vector X" sid="188520678337389" type="Mario">
+                                            <param id="0" name="Vector X">600</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="984461591538260" title="Basic Controls">
+                    <sub-events>
+                        <event-block sid="975281657540689">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="306634957528674" type="Keyboard">
+                                    <param id="0" name="Key">39</param>
+                                </condition>
+                                <condition behavior="Platform" id="10" inverted="1" name="Is by wall" sid="393554200225296" type="Mario">
+                                    <param id="0" name="Side">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="137433172385604" type="Mario">
+                                    <param id="0" name="Control">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="180406207789296">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="913579712890595" type="Keyboard">
+                                    <param id="0" name="Key">37</param>
+                                </condition>
+                                <condition behavior="Platform" id="10" inverted="1" name="Is by wall" sid="678596827846563" type="Mario">
+                                    <param id="0" name="Side">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="288410431905067" type="Mario">
+                                    <param id="0" name="Control">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="107618667383973">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="332168099019216" type="Keyboard">
+                                    <param id="0" name="Key">90</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="845416525317172" type="Mario">
+                                    <param id="0" name="Control">2</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="418415482676162" type="Mario">
+                                    <param id="0" name="Instance variable">IsSkidding</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

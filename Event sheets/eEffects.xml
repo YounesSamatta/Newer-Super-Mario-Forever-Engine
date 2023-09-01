@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eEffects</name>
+    <events>
+        <event-group description="" sid="613934819729697" title="Mario Effects">
+            <sub-events>
+                <comment>Walljump Smoke</comment>
+                <event-block sid="367240681404729">
+                    <conditions>
+                        <condition id="2" name="Is playing" sid="466339956806409" type="Mario">
+                            <param id="0" name="Animation">&quot;Walljump&quot;</param>
+                        </condition>
+                        <condition id="-6" name="Every X seconds" sid="839217007412405" type="System">
+                            <param id="0" name="Interval (seconds)">0.25</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="256180744837250" type="Mario">
+                            <param id="0" name="Object">Smoke_PTCL</param>
+                            <param id="1" name="Layer">&quot;Particles&quot;</param>
+                            <param id="2" name="Image point">&quot;Smoke&quot;</param>
+                        </action>
+                        <action id="9" name="Set scale" sid="298275866304575" type="Smoke_PTCL">
+                            <param id="0" name="Scale">0.8</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="255516898478701" title="Goomba Effects">
+            <sub-events>
+                <event-block sid="525389114156654">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="623315177012973" type="Goomba">
+                            <param id="0" name="Instance variable">Phase</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="289155635447190">
+                            <conditions>
+                                <condition id="-19" name="On destroyed" sid="380301822097818" type="Goomba" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="528323902166685" type="Goomba">
+                                    <param id="0" name="Object">Effect_Pow</param>
+                                    <param id="1" name="Layer">&quot;Particles&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Starts the pow effect fade out which destroys the goomba after finished</comment>
+                <event-block sid="144633927504616">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="799041378551909" type="Effect_Pow" />
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="125437596541811" type="System">
+                            <param id="0" name="Seconds">0.2</param>
+                        </action>
+                        <action behavior="Fade" id="1" name="Start fade" sid="693582359153784" type="Effect_Pow" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
