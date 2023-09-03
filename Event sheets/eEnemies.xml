@@ -272,11 +272,6 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="0" name="Spawn another object" sid="437594222909491" type="Goomba">
-                                                    <param id="0" name="Object">Effect_Pow</param>
-                                                    <param id="1" name="Layer">&quot;Blocks&quot;</param>
-                                                    <param id="2" name="Image point">0</param>
-                                                </action>
                                                 <action id="-9" name="Destroy" sid="594289620481817" type="Goomba" />
                                             </actions>
                                         </event-block>
